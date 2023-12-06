@@ -23,6 +23,17 @@
 
 // console.log("fin de programa");
 
-
 // ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
 
+const num = null;
+
+const empleado = () => {
+  return new Promise((res, rej) => {
+    num ? res(num) : rej(false);
+  });
+};
+
+empleado().then((resp) => console.log(resp))
+.catch(err=>console.log(err))
+
+// ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
