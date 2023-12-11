@@ -1,5 +1,6 @@
 {
   "name": "node-bootcamp",
+  "type": "module",
   "version": "1.0.0",
   "description": "node-bootcamp",
   "main": "index.js",
@@ -18,6 +19,8 @@
   "homepage": "https://github.com/enzo-agu/Node-bootcamp#readme",
   "dependencies": {
     "colors": "^1.4.0",
+    "inquirer": "^9.2.12",
+    "uuid": "^9.0.1",
     "yargs": "^17.7.2"
   }
 }
