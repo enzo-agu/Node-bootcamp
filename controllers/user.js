@@ -1,22 +1,24 @@
 import { response } from "express";
 
 const usuariosGet = (req, res = response) => {
-
-  const {q,apiKey, porDefecto='algoMas'} = req.query
+  const { q, apiKey, porDefecto = "algoMas" } = req.query;
 
   res.json({
     msg: "get API - controlador",
-    q,apiKey,porDefecto
+    q,
+    apiKey,
+    porDefecto,
   });
 };
 
 const usuariosPost = (req, res = response) => {
-  const { id, name } = req.body;
+  const body = req.body;
+  // const {id, nombre, edad, desarrollo, domicilio } = req.body
 
   res.json({
     msg: "post API - controlador",
-    id,
-    name,
+    // id,nombre,edad,desarrollo,domicilio,
+    body
   });
 };
 const usuariosPut = (req, res = response) => {
@@ -26,7 +28,6 @@ const usuariosPut = (req, res = response) => {
     msg: "put API - controlador",
     id,
   });
-
 };
 const usuariosPatch = (req, res = response) => {
   res.json({
