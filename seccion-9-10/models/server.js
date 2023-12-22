@@ -4,6 +4,7 @@ import { __dirName } from "../utils.js";
 import cors from 'cors'
 import { router } from "../../routes/user.js";
 import { dbConnection } from "../../db/configMongoose.js";
+import { routerAuth } from "../../routes/auth.js";
 
 dotenv.config({ path: "../.env" });
 
@@ -14,6 +15,7 @@ class Server {
     this.app = express();
     this.port = process.env.PORT_0;
     this.usuariosPath='/api/usuarios'
+    this.authPath='/api/auth';
 
     this.conectarDB()
 
@@ -34,7 +36,8 @@ class Server {
   }
 
   routes() {
-   
+
+    this.app.use(this.authPath, routerAuth)
     this.app.use(this.usuariosPath, router)
 
   }

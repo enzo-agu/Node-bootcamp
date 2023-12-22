@@ -1,5 +1,5 @@
-import Role from "../seccion-9/models/role.js";
-import Usuario from "../seccion-9/models/usuario.js";
+import Role from "../seccion-9-10/models/role.js";
+import Usuario from "../seccion-9-10/models/usuario.js";
 
 const esRoleValido = async (rol = "") => {
     const existeRol = await Role.findOne({ rol });

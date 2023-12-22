@@ -1,5 +1,5 @@
 import { request, response } from "express";
-import Usuario from "../seccion-9/models/usuario.js";
+import Usuario from "../seccion-9-10/models/usuario.js";
 import bcryptjs from "bcryptjs";
 
 const usuariosGet = async (req = request, res = response) => {
@@ -77,16 +77,21 @@ const usuariosDelete = async (req, res = response) => {
 
   const {id} = req.params
 
+  const uid = req.uid
+
   // BORRADO FISICO 👇
   // const usuario=await Usuario.findByIdAndDelete(id)
 
   // BORRADO DE ESTADO
   const usuarioBorradoEstado= await Usuario.findByIdAndUpdate(id, {estado:false})
 
-  res.json(
+  const usuarioAutenticado= req.usuario
+
+  res.json({
     // usuario
-    usuarioBorradoEstado
-  );
+    usuarioBorradoEstado,
+    usuarioAutenticado
+});
 };
 
 export {

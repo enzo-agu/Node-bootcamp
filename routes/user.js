@@ -9,7 +9,8 @@ import {
   usuariosPut,
 } from "../controllers/user.js";
 import { validarCampos } from "../middlewares/validar-campos.js";
-import Role from "../seccion-9/models/role.js";
+import { validarJWT } from "../middlewares/validar-jwt.js";
+import { esAdminRole, tieneRole } from "../middlewares/validar-roles.js";
 import {
   esRoleValido,
   existeCorreo,
@@ -45,6 +46,9 @@ router.patch("/", usuariosPatch);
 router.delete(
   "/:id",
   [
+    validarJWT,
+    esAdminRole,
+    tieneRole("ADMIN_ROLE", "VENTAS_ROLE"),
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(existeUsuarioPorId),
     validarCampos,
