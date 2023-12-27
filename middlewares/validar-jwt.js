@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken'
 import dotenv from "dotenv";
 import Usuario from '../seccion-9-10/models/usuario.js';
-// import usuario from '../seccion-9-10/models/usuario';
 
 dotenv.config({ path: "./.env" });
 
@@ -49,7 +48,7 @@ const validarJWT = async (req= request,res=response, next) =>{
     
     
 
-    next()
+    // next()
 }
 
 export {validarJWT}

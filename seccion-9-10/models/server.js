@@ -5,6 +5,9 @@ import cors from 'cors'
 import { router } from "../../routes/user.js";
 import { dbConnection } from "../../db/configMongoose.js";
 import { routerAuth } from "../../routes/auth.js";
+import { routercategories } from "../../routes/categorias.js";
+import { routerProducts } from "../../routes/productos.js";
+import { routerBusqueda } from "../../routes/buscar.js";
 
 dotenv.config({ path: "../.env" });
 
@@ -16,6 +19,9 @@ class Server {
     this.port = process.env.PORT_0;
     this.usuariosPath='/api/usuarios'
     this.authPath='/api/auth';
+    this.productos='/api/productos'
+    this.categorias='/api/categorias'
+    this.buscar='/api/buscar'
 
     this.conectarDB()
 
@@ -39,6 +45,9 @@ class Server {
 
     this.app.use(this.authPath, routerAuth)
     this.app.use(this.usuariosPath, router)
+    this.app.use(this.categorias, routercategories)
+    this.app.use(this.productos, routerProducts)
+    this.app.use(this.buscar, routerBusqueda)
 
   }
 
