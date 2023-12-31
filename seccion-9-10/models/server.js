@@ -8,6 +8,8 @@ import { routerAuth } from "../../routes/auth.js";
 import { routercategories } from "../../routes/categorias.js";
 import { routerProducts } from "../../routes/productos.js";
 import { routerBusqueda } from "../../routes/buscar.js";
+import { routerUpload } from "../../routes/uploads.js";
+import fileUpload from "express-fileupload";
 
 dotenv.config({ path: "../.env" });
 
@@ -22,6 +24,8 @@ class Server {
     this.productos='/api/productos'
     this.categorias='/api/categorias'
     this.buscar='/api/buscar'
+    this.uploads='/api/uploads'
+
 
     this.conectarDB()
 
@@ -36,9 +40,14 @@ class Server {
 
   middlewares() {
 
-    this.app.use(cors())
-    this.app.use(express.json())
+    this.app.use(cors());
+    this.app.use(express.json());
     this.app.use(express.static("./public"));
+    this.app.use(fileUpload({
+      useTempFiles:true,
+      tempFileDir:'/tmp',
+      createParentPath:true
+    }))
   }
 
   routes() {
@@ -48,6 +57,8 @@ class Server {
     this.app.use(this.categorias, routercategories)
     this.app.use(this.productos, routerProducts)
     this.app.use(this.buscar, routerBusqueda)
+    this.app.use(this.uploads, routerUpload)
+
 
   }
 
